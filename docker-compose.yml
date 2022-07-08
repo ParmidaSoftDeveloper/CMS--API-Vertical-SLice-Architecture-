@@ -1,15 +1,28 @@
 version: '3.8'
 services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2017-latest
-    container_name: Cms-sql
+  seq:
+    container_name: geekiam_seq
+    image: datalust/seq:latest
     ports:
-      - 1433:1433
+      - 80:80
+      - 5341:5341
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Password99()
+      ACCEPT_EULA: Y
+  postgres:
+    container_name: geekiam_postgre
+    image: postgres
+    env_file:
+      - .env
+    
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
     networks:
-      - Solution
+      - geekiam
+    restart: unless-stopped
 networks:
-    kraken:
-      name: solution
+  geekiam:
+    driver: bridge
+volumes:
+  postgres:

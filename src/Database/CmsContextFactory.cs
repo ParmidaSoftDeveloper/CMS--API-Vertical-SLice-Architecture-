@@ -11,7 +11,7 @@ internal class CmsContextFactory : IDesignTimeDbContextFactory<CmsContext>
         DbContextOptionsBuilder<CmsContext> dbContextOptionsBuilder =
             new();
 
-        dbContextOptionsBuilder.UseSqlServer(@"localBuild");
+        dbContextOptionsBuilder.UseNpgsql(@"localBuild");
         return new CmsContext(dbContextOptionsBuilder.Options);
     }
 }

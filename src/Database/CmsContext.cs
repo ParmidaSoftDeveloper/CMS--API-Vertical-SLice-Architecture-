@@ -14,7 +14,8 @@ public class CmsContext : BaseContext<CmsContext>
   
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("Cms");
+        modelBuilder.HasDefaultSchema("cms");
+        modelBuilder.HasPostgresExtension("uuid-ossp");
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
