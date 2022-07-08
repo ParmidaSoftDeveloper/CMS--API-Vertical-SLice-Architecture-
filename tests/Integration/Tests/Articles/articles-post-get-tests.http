@@ -1,0 +1,23 @@
+### Create new Article
+POST {{host}}/{{articles_resource_name}}
+accept: text/plain
+Content-Type: application/json-patch+json
+
+{
+  "article": {
+    "title": "test title {{$uuid}}",
+    "summary": "test summary {{$uuid}}",
+    "content": "test content {{$uuid}}"
+  }
+}
+
+> ../../Asserts/Articles/Should_Create_Article_with_201.js
+###
+
+
+### Get the Created Article
+GET {{host}}/{{articles_resource_name}}/{{articles_created_id}}
+accept: text/plain
+Content-Type: application/json
+
+> ../../Asserts/Should_be_200_Ok.js
