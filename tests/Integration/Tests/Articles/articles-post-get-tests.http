@@ -12,7 +12,6 @@ Content-Type: application/json-patch+json
 }
 
 > ../../Asserts/Articles/Should_Create_Article_with_201.js
-###
 
 
 ### Get the Created Article
@@ -21,3 +20,37 @@ accept: text/plain
 Content-Type: application/json
 
 > ../../Asserts/Should_be_200_Ok.js
+
+### Partial Update
+PATCH {{host}}/{{articles_resource_name}}/{{articles_created_id}}
+accept: text/plain
+Content-Type: application/json-patch+json
+
+[
+  {
+    "op": "replace",
+    "value": "PATCh Title {{$uuid}}",
+    "path": "title"
+  },
+  {
+    "op": "replace",
+    "value": "PATCh Content {{$uuid}}",
+    "path": "content"
+  }
+]
+
+> ../../Asserts/Should_be_200_Ok.js
+
+### Update the entire record
+PUT {{host}}/{{articles_resource_name}}/{{articles_created_id}}
+Accept: text/plain
+Content-Type: application/json
+
+{
+  "title": "PUT title {{$uuid}}",
+  "summary": "PUT Summary {{$uuid}}",
+  "content": "PUT COntent {{$uuid}}"
+}
+
+> ../../Asserts/Should_be_204_no_content.js
+###
