@@ -17,6 +17,6 @@ public class Handler : IRequestHandler<Command, SingleResponse<Response>>
 
     public async Task<SingleResponse<Response>> Handle(Command request, CancellationToken cancellationToken)
     {
-        return await _services.Create<Models.Cms.Article, Article, Response>(request.Article);
+        return await _services.Create<Models.Cms.Content, Article, Response>(request.Article);
     }
 }

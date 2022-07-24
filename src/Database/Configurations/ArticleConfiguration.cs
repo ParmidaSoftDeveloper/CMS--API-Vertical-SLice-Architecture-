@@ -5,11 +5,11 @@ using Threenine.Configurations.PostgreSql;
 
 namespace Database.Cmss.Configurations;
 
-public class ArticleConfiguration : BaseEntityTypeConfiguration<Article>
+public class ArticleConfiguration : BaseEntityTypeConfiguration<Content>
 {
-    public override void Configure(EntityTypeBuilder<Article> builder)
+    public override void Configure(EntityTypeBuilder<Content> builder)
     {
-        builder.ToTable(nameof(Article));
+        builder.ToTable(nameof(Content));
        
         builder.Property(x => x.Title)
             .HasColumnType(ColumnTypes.Varchar)
@@ -21,7 +21,7 @@ public class ArticleConfiguration : BaseEntityTypeConfiguration<Article>
             .HasMaxLength(300)
             .IsRequired();
 
-        builder.Property(x => x.Content)
+        builder.Property(x => x.Body)
             .HasColumnType(ColumnTypes.Text);
     }
 }

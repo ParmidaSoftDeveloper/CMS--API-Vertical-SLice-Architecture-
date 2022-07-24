@@ -19,7 +19,7 @@ public class Handler : IRequestHandler<Command, SingleResponse<Response>>
 
     public async Task<SingleResponse<Response>> Handle(Command request, CancellationToken cancellationToken)
     {
-        return await _services.Patch<Models.Cms.Article, Article, Response>(x => x.Id == request.Id,
+        return await _services.Patch<Models.Cms.Content, Article, Response>(x => x.Id == request.Id,
             request.Article);
     }
 }

@@ -19,7 +19,7 @@ public class Handler : IRequestHandler<Query, SingleResponse<Response>>
 
     public async Task<SingleResponse<Response>> Handle(Query request, CancellationToken cancellationToken)
     {
-        var result = await _unitOfWork.GetReadOnlyRepositoryAsync<Models.Cms.Article>()
+        var result = await _unitOfWork.GetReadOnlyRepositoryAsync<Models.Cms.Content>()
             .SingleOrDefaultAsync(predicate: x => x.Id == request.Id);
         
         return new SingleResponse<Response>(_mapper.Map<Response>(new Response { Article = _mapper.Map<Article>(result)}));

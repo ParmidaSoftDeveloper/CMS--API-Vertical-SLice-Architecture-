@@ -9,19 +9,19 @@ public class Mapping: Profile
     {
         
         
-        CreateMap<Models.Cms.Article, Response>(MemberList.None)
+        CreateMap<Models.Cms.Content, Response>(MemberList.None)
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
-            .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Body))
             .ForMember(dest => dest.Summary, opt => opt.MapFrom(src => src.Summary));
  
-        CreateMap<Models.Cms.Article, Article>(MemberList.None)
+        CreateMap<Models.Cms.Content, Article>(MemberList.None)
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
-            .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Body))
             .ForMember(dest => dest.Summary, opt => opt.MapFrom(src => src.Summary));
 
-        CreateMap<Article, Models.Cms.Article>(MemberList.None)
+        CreateMap<Article, Models.Cms.Content>(MemberList.None)
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
-            .ForMember(dest => dest.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dest => dest.Body, opt => opt.MapFrom(src => src.Content))
             .ForMember(dest => dest.Summary, opt => opt.MapFrom(src => src.Summary));
 
     }
