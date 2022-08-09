@@ -25,14 +25,30 @@ public class ContentConfiguration : BaseEntityTypeConfiguration<Content>
             .HasColumnType(ColumnTypes.Text);
 
         builder.Property(x => x.ContentType)
-            .HasDefaultValue(ContentType.NotDefined);
+            .HasDefaultValue(ContentType.NotDefined)
+            .HasConversion<string>();
         
         builder.Property(t => t.Status)
             .HasDefaultValue(ContentStatus.Draft)
             .HasConversion<string>();
 
-        builder.HasOne(x => x.Seo)
-            .WithMany(s => s.Contents)
-            .HasForeignKey(k => k.SeoId);
+       
+        builder.Property(x => x.MetaDescription)
+            .HasColumnType(ColumnTypes.Varchar)
+            .HasMaxLength(330);
+
+        builder.Property(x => x.MetaTitle)
+            .HasColumnType(ColumnTypes.Varchar)
+            .HasMaxLength(65);
+
+        builder.Property(x => x.MetaRobots)
+            .HasColumnType(ColumnTypes.Varchar)
+            .HasMaxLength(35);
+
+        builder.Property(x => x.MetaViewPort)
+            .HasColumnType(ColumnTypes.Varchar)
+            .HasMaxLength(30);
+        
+        base.Configure(builder);
     }
 }

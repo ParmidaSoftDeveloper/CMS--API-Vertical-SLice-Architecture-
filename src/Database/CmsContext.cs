@@ -15,13 +15,15 @@ public class CmsContext : BaseContext<CmsContext>
     public DbSet<Content> Contents { get; set; }
     public DbSet<Subject> Subjects { get; set; }
     public DbSet<ContentSubject> ContentSubjects { get; set; }
-    public DbSet<Seo> Seos { get; set; }
+ 
  
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("cms");
          modelBuilder.HasPostgresExtension("uuid-ossp");
+        
+        
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

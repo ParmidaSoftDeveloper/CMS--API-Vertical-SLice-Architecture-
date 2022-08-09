@@ -10,6 +10,8 @@ public class SubjectConfiguration : BaseEntityTypeConfiguration<Subject>
     public override void Configure(EntityTypeBuilder<Subject> builder)
     {
         builder.ToTable(nameof(Subject));
+
+        builder.HasIndex(x => new { x.Name, x.SubjectType, x.Permalink }).IsUnique();
        
         builder.Property(x => x.Name)
             .HasColumnType(ColumnTypes.Varchar)
