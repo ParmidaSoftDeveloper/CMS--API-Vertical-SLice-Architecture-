@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Models.Cms;
 using Threenine.Configurations.PostgreSql;
 
-namespace Database.Cmss.Configurations;
+namespace Database.Configurations;
 
-public class ArticleConfiguration : BaseEntityTypeConfiguration<Content>
+public class ContentConfiguration : BaseEntityTypeConfiguration<Content>
 {
     public override void Configure(EntityTypeBuilder<Content> builder)
     {
@@ -23,5 +23,16 @@ public class ArticleConfiguration : BaseEntityTypeConfiguration<Content>
 
         builder.Property(x => x.Body)
             .HasColumnType(ColumnTypes.Text);
+
+        builder.Property(x => x.ContentType)
+            .HasDefaultValue(ContentType.NotDefined);
+        
+        builder.Property(t => t.Status)
+            .HasDefaultValue(ContentStatus.Draft)
+            .HasConversion<string>();
+
+        builder.HasOne(x => x.Seo)
+            .WithMany(s => s.Contents)
+            .HasForeignKey(k => k.SeoId);
     }
 }

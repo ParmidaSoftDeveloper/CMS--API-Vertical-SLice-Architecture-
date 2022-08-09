@@ -1,8 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Database.Cmss;
+namespace Database;
 
 internal class CmsContextFactory : IDesignTimeDbContextFactory<CmsContext>
 {
